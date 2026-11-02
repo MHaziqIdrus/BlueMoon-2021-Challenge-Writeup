@@ -10,6 +10,7 @@ We started by scanning the local subnet to identify the target's IP address:
 sudo nmap -sn 192.168.56.0/24
 ```
 <img width="682" height="260" alt="557deedc-9d49-4f64-b495-ab75309222f1" src="https://github.com/user-attachments/assets/fa23c382-93e0-4b52-882e-1f8181210fd7" />  
+
 Discovered Target IP: 192.168.56.103
 
 
@@ -28,21 +29,21 @@ Found: Port 21(FTP), port 22(SSH), and port 80(HTTP)
   gobuster dir -u http://192.168.56.103 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
   ```
   <img width="856" height="354" alt="0a9fb83d-cdeb-4d55-92be-2308ac175dea" src="https://github.com/user-attachments/assets/91004af2-a36b-4ac7-9fd6-2ae888af8e36" />  
-Found: /hidden_text (Status 200)
+  Found: /hidden_text (Status 200)
 
   
 ## 3. Finding the Clues 
 
-* Visiting "http://192.168.56.103/hidden_text" displayed a maintenance page with a link labeled "Thank You":
+* Visiting http://192.168.56.103/hidden_text displayed a maintenance page with a link labeled "Thank You":
   <img width="1277" height="895" alt="d0c9c13b-e82c-4bda-a88e-da07a11c6e4a" src="https://github.com/user-attachments/assets/235268a9-6046-41a2-8811-73b9f122edb5" />
   
-* Clicking it led to a hidden image file named ".QR_C0d3.png":
+* Clicking it led to a hidden image file named '.QR_C0d3.png':
   <img width="1279" height="894" alt="77d84fca-5d58-4cd8-981c-c05d22ebfdba" src="https://github.com/user-attachments/assets/b110309f-fdcf-4f9e-9b88-b1a2ead5f5fe" />
  
 * Scanning the QR code revealed hidden text containing FTP credentials and a script snippet:
   <img width="1080" height="1318" alt="83b4eb80-3ab2-4d13-b49b-6491ba75638e" src="https://github.com/user-attachments/assets/37b41425-05c6-4971-9f9e-41e403531c45" />  
-Username: userftp  
-Password: ftpp@ssowrd
+  Username: userftp  
+  Password: ftpp@ssowrd
 
 
 ## 4. FTP Exploitation & Data Harvesting
@@ -67,14 +68,14 @@ Password: ftpp@ssowrd
   hydra -l robin -P p_lists.txt ssh://192.168.56.103
   ```
   <img width="1600" height="228" alt="27308f0f-d6c5-4de1-a5bf-62ab19f91388" src="https://github.com/user-attachments/assets/8c7b5f10-2d2f-4838-a042-4fa9a834e9c4" />  
-Cracked Password: k4rv3ndh4nh4ck3r
+  Cracked Password: k4rv3ndh4nh4ck3r
 
 * We logged into SSH using the credentials we have:
   <img width="674" height="311" alt="5820d868-b409-4add-b876-f5df4235c1e0" src="https://github.com/user-attachments/assets/e07455c0-e60c-49e5-a510-533f9556fc8e" />
 
-* We found the first flag in 'user.txt' file:
+* We found the first flag in 'user.txt' file:  
   <img width="373" height="123" alt="3bd29845-1897-438a-a58b-b3956889eac4" src="https://github.com/user-attachments/assets/46292ff0-3488-4017-9932-625b15bb0a41" />  
-Flag: Fl4g{u5er1r34ch3d5ucc355fully}
+  Flag: Fl4g{u5er1r34ch3d5ucc355fully}
 
 
 ## 6. Privilege Escalation (To Jerry)
@@ -92,7 +93,7 @@ Flag: Fl4g{u5er1r34ch3d5ucc355fully}
   <img width="553" height="215" alt="6202e1ae-be4c-4f47-9a98-1039238da0e7" src="https://github.com/user-attachments/assets/a8784f07-c9e7-4a9c-9f64-7c376d117de9" />
   
 * We executed the script using 'sudo' and injected a shell command '/bin/bash' into the feedback prompt to spawn a shell as 'jerry':
-  <img width="538" height="195" alt="fbac7e3d-17e0-4061-8816-2d37b8cc0dcb" src="https://github.com/user-attachments/assets/b82735d8-9896-49d3-89e6-1d25d9d932d7" />
+  <img width="538" height="195" alt="fbac7e3d-17e0-4061-8816-2d37b8cc0dcb" src="https://github.com/user-attachments/assets/11a6f0cd-3363-4b43-a1a5-1e087ba562b2" />
 
 
 ## 7. Privilege Escalation (To Root)
@@ -105,4 +106,4 @@ Flag: Fl4g{u5er1r34ch3d5ucc355fully}
 
 * We then list the directory available and navigated to 'root.txt' file to retrieve the final flag:
   <img width="319" height="369" alt="1199ffda-d8df-483a-b936-08326081b5c0" src="https://github.com/user-attachments/assets/75793b7a-a3ce-41c0-99fd-2eefba2398e2" />  
-Flag: Fl4g{r00t-H4ckTh3P14n3t0nc34g41n}
+  Flag: Fl4g{r00t-H4ckTh3P14n3t0nc34g41n}
