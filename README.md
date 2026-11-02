@@ -93,6 +93,7 @@ Found: Port 21(FTP), port 22(SSH), and port 80(HTTP)
   <img width="553" height="215" alt="6202e1ae-be4c-4f47-9a98-1039238da0e7" src="https://github.com/user-attachments/assets/a8784f07-c9e7-4a9c-9f64-7c376d117de9" />
   
 * We executed the script using 'sudo' and injected a shell command '/bin/bash' into the feedback prompt to spawn a shell as 'jerry':
+  
   <img width="538" height="195" alt="fbac7e3d-17e0-4061-8816-2d37b8cc0dcb" src="https://github.com/user-attachments/assets/11a6f0cd-3363-4b43-a1a5-1e087ba562b2" />
 
 
